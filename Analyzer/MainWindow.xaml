@@ -1,0 +1,121 @@
+﻿<Window x:Class="Analyzer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Analyzer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="778" Width="1305">
+    <Grid>
+        <ListView x:Name="SenderListBox" HorizontalAlignment="Left" Height="416" Margin="12,24,0,0" VerticalAlignment="Top" Width="434">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Background" Value="{Binding BackgroundBrush}" />
+                    <Setter Property="Height" Value="{Binding Height}" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+
+                <GridView AllowsColumnReorder="True">
+                    <GridView.Columns >
+                        <GridViewColumn Header="Time"
+                                        DisplayMemberBinding="{Binding DateTime, StringFormat='HH:mm:ss,fff'}" />
+                        <GridViewColumn Header="Guid"
+                                        DisplayMemberBinding="{Binding g}" />
+
+                    </GridView.Columns>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="ReceiverListBox" HorizontalAlignment="Left" Height="416" Margin="887,24,0,0" VerticalAlignment="Top" Width="326">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Background" Value="{Binding BackgroundBrush}" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+
+                <GridView AllowsColumnReorder="True">
+                    <GridView.Columns >
+                        <GridViewColumn Header="Time"
+                                        DisplayMemberBinding="{Binding DateTime, StringFormat='HH:mm:ss,fff'}" />
+                        <GridViewColumn Header="Guid"
+                                        DisplayMemberBinding="{Binding G}" />
+
+                    </GridView.Columns>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="ServerReceiverListBox" HorizontalAlignment="Left" Height="416" Margin="527,24,0,0" VerticalAlignment="Top" Width="98">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Style.Resources>
+                        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="{x:Static SystemColors.HighlightColor}"/>
+                    </Style.Resources>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}">Red</SolidColorBrush>
+            </ListView.Resources>
+            <ListView.View>
+
+                <GridView AllowsColumnReorder="True">
+                    <GridView.Columns >
+                        <GridViewColumn Header="Time"
+                                        DisplayMemberBinding="{Binding DateTime, StringFormat='HH:mm:ss,fff'}" />
+                        <GridViewColumn Header="Guid"
+                                        DisplayMemberBinding="{Binding g}" />
+
+                    </GridView.Columns>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="SenderSelectFileButton" Content="Select Sender Log" HorizontalAlignment="Left" Margin="12,445,0,0" VerticalAlignment="Top" Width="114" Click="SenderButton_Click"/>
+        <Button x:Name="ServerSelectFileButton" Content="Select Server Log" HorizontalAlignment="Left" Margin="526,445,0,0" VerticalAlignment="Top" Width="271" Click="ServerSelectFileButton_Click"/>
+        <Button x:Name="ReceiverSelectFileButton" Content="Select Receiver Log" HorizontalAlignment="Left" Margin="1086,445,0,0" VerticalAlignment="Top" Width="118" RenderTransformOrigin="0.507,-0.8" Click="ReceiverSelectFileButton_Click"/>
+        <ListView x:Name="ServerSenderListBox" HorizontalAlignment="Left" Height="416" Margin="706,24,0,0" VerticalAlignment="Top" Width="99" RenderTransformOrigin="0.084,0.507">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <Setter Property="Background" Value="{Binding BackgroundBrush}" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+
+                <GridView AllowsColumnReorder="True">
+                    <GridView.Columns >
+                        <GridViewColumn Header="Time"
+                                        DisplayMemberBinding="{Binding DateTime, StringFormat='HH:mm:ss,fff'}" />
+                        <GridViewColumn Header="Guid"
+                                        DisplayMemberBinding="{Binding G}" />
+
+                    </GridView.Columns>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBox x:Name="InfoLabel" Text="For additional info, select any item in Client Sender List." HorizontalAlignment="Left" Margin="10,470,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.211,0.346" Width="1277" Height="267"/>
+        <Rectangle Fill="DimGray" HorizontalAlignment="Left" Height="41" Margin="463,203,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Label Content="Client Sender:" HorizontalAlignment="Left" Margin="8,1,0,0" VerticalAlignment="Top" Width="90" FontWeight="Bold"/>
+        <Label Content="Server Receiver:" HorizontalAlignment="Left" Margin="521,1,0,0" VerticalAlignment="Top" Width="104" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+        <Label Content="Server Sender:" HorizontalAlignment="Left" Margin="703,1,0,0" VerticalAlignment="Top" Width="98" FontWeight="Bold"/>
+        <Label Content="Client Receiver:" HorizontalAlignment="Left" Margin="883,1,0,0" VerticalAlignment="Top" Width="108" FontWeight="Bold"/>
+        <Rectangle Fill="Red" HorizontalAlignment="Left" Height="41" Margin="642,203,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle Fill="PaleVioletRed" HorizontalAlignment="Left" Height="41" Margin="822,203,0,0" Stroke="Black" VerticalAlignment="Top" Width="40"/>
+        <Rectangle Fill="LightGreen" HorizontalAlignment="Left" Height="41" Margin="1227,204,0,0" Stroke="Black" VerticalAlignment="Top" Width="41"/>
+        <Image HorizontalAlignment="Left" Height="32" Margin="828,209,0,0" VerticalAlignment="Top" Width="32" Source="mail_block-512.png" OpacityMask="Black"/>
+        <Image HorizontalAlignment="Left" Height="26" Margin="448,244,0,0" VerticalAlignment="Top" Width="78" Source="2000px-Arrow_right.svg.png"/>
+        <Image HorizontalAlignment="Left" Height="26" Margin="627,244,0,0" VerticalAlignment="Top" Width="78" Source="2000px-Arrow_right.svg.png"/>
+        <Image HorizontalAlignment="Left" Height="26" Margin="808,244,0,0" VerticalAlignment="Top" Width="78" Source="2000px-Arrow_right.svg.png"/>
+        <Image HorizontalAlignment="Left" Height="32" Margin="648,209,0,0" VerticalAlignment="Top" Width="32" Source="mail_block-512.png" OpacityMask="Black"/>
+        <Image HorizontalAlignment="Left" Height="32" Margin="469,209,0,0" VerticalAlignment="Top" Width="32" Source="mail_block-512.png" OpacityMask="Black" IsEnabled="False"/>
+        <Image HorizontalAlignment="Left" Height="42" Margin="1230,202,0,0" VerticalAlignment="Top" Width="35" Source="mail-512.png"/>
+        <Label x:Name="ToServerReceiverFailCounter" Content="0%" HorizontalAlignment="Left" Margin="451,177,0,0" VerticalAlignment="Top" Width="71" HorizontalContentAlignment="Center"/>
+        <Label x:Name="ToServerSenderFailCounter" Content="0%" HorizontalAlignment="Left" Margin="630,178,0,0" VerticalAlignment="Top" Width="71" HorizontalContentAlignment="Center"/>
+        <Label x:Name="ToClientReceiverFailCounter" Content="0%" HorizontalAlignment="Left" Margin="810,178,0,0" VerticalAlignment="Top" Width="72" HorizontalContentAlignment="Center"/>
+        <Label x:Name="ToClientSuccessCounter" Content="0%" HorizontalAlignment="Left" Margin="1218,178,0,0" VerticalAlignment="Top" Width="61" HorizontalContentAlignment="Center"/>
+
+    </Grid>
+</Window>
